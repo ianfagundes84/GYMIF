@@ -13,7 +13,7 @@ public protocol LoginDelegate: AnyObject {
     func didUserLogin()
 }
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     private var viewModel: LoginViewModel
 
