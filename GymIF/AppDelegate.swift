@@ -18,10 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Firebase
         FirebaseApp.configure()
         
+        let gIdConfiguration = GIDConfiguration(clientID: "877894545674-acpn4v4p5jv1of89jfs8uclp5h2bg1kt.apps.googleusercontent.com")
+        GIDSignIn.sharedInstance.configuration = gIdConfiguration
+        
         // Check and restore previous login
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
           if error != nil || user == nil {
-            // Show the app's signed-out state.
+              
           } else {
             // Show the app's signed-in state.
           }
@@ -101,3 +104,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+// MARK:- Notification names
+extension Notification.Name {
+    
+    /// Notification when user successfully sign in using Google
+    static var signInGoogleCompleted: Notification.Name {
+        return .init(rawValue: #function)
+    }
+}
