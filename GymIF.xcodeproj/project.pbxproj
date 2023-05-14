@@ -10,10 +10,10 @@
 		14B83AB72A107434004AECF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83AB62A107434004AECF2 /* AppDelegate.swift */; };
 		14B83AB92A107434004AECF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83AB82A107434004AECF2 /* SceneDelegate.swift */; };
 		14B83ABB2A107434004AECF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83ABA2A107434004AECF2 /* ViewController.swift */; };
-		14B83ABE2A107434004AECF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B83ABC2A107434004AECF2 /* Main.storyboard */; };
 		14B83AC12A107434004AECF2 /* GymIF.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14B83ABF2A107434004AECF2 /* GymIF.xcdatamodeld */; };
 		14B83AC32A107435004AECF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B83AC22A107435004AECF2 /* Assets.xcassets */; };
 		14B83AC62A107435004AECF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B83AC42A107435004AECF2 /* LaunchScreen.storyboard */; };
+		14B83ACF2A1075B0004AECF2 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 14B83ACE2A1075B0004AECF2 /* TinyConstraints */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +21,6 @@
 		14B83AB62A107434004AECF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14B83AB82A107434004AECF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		14B83ABA2A107434004AECF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		14B83ABD2A107434004AECF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14B83AC02A107434004AECF2 /* GymIF.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GymIF.xcdatamodel; sourceTree = "<group>"; };
 		14B83AC22A107435004AECF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14B83AC52A107435004AECF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -33,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14B83ACF2A1075B0004AECF2 /* TinyConstraints in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,6 @@
 				14B83AB62A107434004AECF2 /* AppDelegate.swift */,
 				14B83AB82A107434004AECF2 /* SceneDelegate.swift */,
 				14B83ABA2A107434004AECF2 /* ViewController.swift */,
-				14B83ABC2A107434004AECF2 /* Main.storyboard */,
 				14B83AC22A107435004AECF2 /* Assets.xcassets */,
 				14B83AC42A107435004AECF2 /* LaunchScreen.storyboard */,
 				14B83AC72A107435004AECF2 /* Info.plist */,
@@ -86,6 +85,9 @@
 			dependencies = (
 			);
 			name = GymIF;
+			packageProductDependencies = (
+				14B83ACE2A1075B0004AECF2 /* TinyConstraints */,
+			);
 			productName = GymIF;
 			productReference = 14B83AB32A107434004AECF2 /* GymIF.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +116,9 @@
 				Base,
 			);
 			mainGroup = 14B83AAA2A107434004AECF2;
+			packageReferences = (
+				14B83ACD2A1075B0004AECF2 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+			);
 			productRefGroup = 14B83AB42A107434004AECF2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -130,7 +135,6 @@
 			files = (
 				14B83AC62A107435004AECF2 /* LaunchScreen.storyboard in Resources */,
 				14B83AC32A107435004AECF2 /* Assets.xcassets in Resources */,
-				14B83ABE2A107434004AECF2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,14 +155,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		14B83ABC2A107434004AECF2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				14B83ABD2A107434004AECF2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		14B83AC42A107435004AECF2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,9 +292,8 @@
 				INFOPLIST_FILE = GymIF/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,9 +301,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ianfagundes.GymIF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -324,9 +322,8 @@
 				INFOPLIST_FILE = GymIF/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,9 +331,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ianfagundes.GymIF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -362,6 +362,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		14B83ACD2A1075B0004AECF2 /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roberthein/TinyConstraints.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		14B83ACE2A1075B0004AECF2 /* TinyConstraints */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14B83ACD2A1075B0004AECF2 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
+			productName = TinyConstraints;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		14B83ABF2A107434004AECF2 /* GymIF.xcdatamodeld */ = {

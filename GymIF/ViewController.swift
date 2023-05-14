@@ -6,14 +6,30 @@
 //
 
 import UIKit
+import TinyConstraints
 
 class ViewController: UIViewController {
-
+    
+    let label = {
+        let lb = UILabel()
+        lb.text = "Hello, World!"
+        return lb
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupHierarchy()
+        setupLayout()
     }
-
-
+    
+    private func setupHierarchy() {
+        view.addSubview(label)
+    }
+    
+    private func setupLayout() {
+        view.backgroundColor = .white
+        label.centerInSuperview()
+    }
 }
+
 
