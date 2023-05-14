@@ -15,6 +15,5 @@ public enum AppAction {
 }
 
 public protocol AppRouterContract: AnyObject {
-    func send(action: AppAction, from viewController: UIViewController?)
+    func send(action: AppAction)
 }
-

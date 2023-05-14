@@ -13,14 +13,12 @@ public enum LoginAction {
 }
 
 protocol LoginCoordinating: AnyObject {
-    var viewController: UIViewController? { get set }
     func perform(action: LoginAction)
 }
 
 final class LoginCoordinator {
-    weak var viewController: UIViewController?
     private let appRouter: AppRouterContract?
-    
+
     init(appRouter: AppRouterContract? = nil) {
         self.appRouter = appRouter
     }
@@ -30,7 +28,7 @@ extension LoginCoordinator: LoginCoordinating {
     func perform(action: LoginAction) {
         switch action {
         case .openHome:
-            appRouter?.send(action: .openHome, from: viewController)
+            appRouter?.send(action: .openHome)
         }
     }
 }

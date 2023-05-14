@@ -30,7 +30,7 @@ extension HomeCoordinator: HomeCoordinating {
     func perform(action: HomeAction) {
         switch action {
         case .openExercises:
-            appRouter?.send(action: .openWorkout, from: viewController)
+            appRouter?.send(action: .openWorkout)
         }
     }
 }

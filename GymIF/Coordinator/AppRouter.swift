@@ -8,31 +8,36 @@
 import Foundation
 import UIKit
 
+import Foundation
+import UIKit
+
 final class AppRouter: AppRouterContract {
-    
-    static let shared = AppRouter()
-    
-    func send(action: AppAction, from viewController: UIViewController?) {
-        guard let viewController = viewController else { return }
+
+    private weak var navigationController: UINavigationController?
+
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
+    }
+
+    func send(action: AppAction) {
         switch action {
-        case .openHome:
-            openHome(viewController)
         case .openLogin:
-            openLogin(viewController)
+            openLogin()
+        case .openHome:
+            openHome()
         case .openWorkout:
             break
         }
     }
-    
-    private func openLogin(_ viewController: UIViewController) {
+
+    private func openLogin() {
         let controller = LoginFactory.make(appRouter: self)
-        let navigationController = viewController as? UINavigationController
         navigationController?.pushViewController(controller, animated: true)
     }
-    
-    private func openHome(_ viewController: UIViewController) {
+
+    private func openHome() {
         let controller = HomeFactory.make(appRouter: self)
-        let navigationController = viewController as? UINavigationController
         navigationController?.pushViewController(controller, animated: true)
     }
-} 
+}
+

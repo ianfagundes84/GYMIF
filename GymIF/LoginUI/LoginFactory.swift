@@ -14,8 +14,6 @@ public enum LoginFactory {
         let viewModel = LoginViewModel(coordinator: coordinator)
         let viewController = LoginViewController(viewModel: viewModel)
         viewModel.viewController = viewController
-        coordinator.viewController = viewController
-
         return viewController
     }
 }
