@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		14A19C672A111F5600ADE058 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14A19C662A111F5600ADE058 /* GoogleSignInSwift */; };
 		14A19C692A112BE600ADE058 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A19C682A112BE600ADE058 /* LoginViewModel.swift */; };
+		14A19C6F2A11561400ADE058 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14A19C6E2A11561400ADE058 /* GoogleService-Info.plist */; };
 		14B83AB72A107434004AECF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83AB62A107434004AECF2 /* AppDelegate.swift */; };
 		14B83AB92A107434004AECF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83AB82A107434004AECF2 /* SceneDelegate.swift */; };
 		14B83ABB2A107434004AECF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83ABA2A107434004AECF2 /* ViewController.swift */; };
@@ -22,13 +23,13 @@
 		14B83ADA2A107EB6004AECF2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 14B83AD92A107EB6004AECF2 /* FirebaseCrashlytics */; };
 		14B83ADC2A107EB6004AECF2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 14B83ADB2A107EB6004AECF2 /* FirebaseFirestore */; };
 		14B83ADE2A107EB6004AECF2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 14B83ADD2A107EB6004AECF2 /* FirebaseStorage */; };
-		14B83AE02A1080E0004AECF2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14B83ADF2A1080E0004AECF2 /* GoogleService-Info.plist */; };
 		14B83AE22A1087FB004AECF2 /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83AE12A1087FB004AECF2 /* TextField+Extensions.swift */; };
 		14B83AE42A108A56004AECF2 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83AE32A108A56004AECF2 /* UIViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		14A19C682A112BE600ADE058 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		14A19C6E2A11561400ADE058 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14B83AB32A107434004AECF2 /* GymIF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymIF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B83AB62A107434004AECF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14B83AB82A107434004AECF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +38,6 @@
 		14B83AC22A107435004AECF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14B83AC52A107435004AECF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14B83AC72A107435004AECF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14B83ADF2A1080E0004AECF2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14B83AE12A1087FB004AECF2 /* TextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extensions.swift"; sourceTree = "<group>"; };
 		14B83AE32A108A56004AECF2 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,8 +86,8 @@
 				14A19C682A112BE600ADE058 /* LoginViewModel.swift */,
 				14B83AC22A107435004AECF2 /* Assets.xcassets */,
 				14B83AC42A107435004AECF2 /* LaunchScreen.storyboard */,
-				14B83ADF2A1080E0004AECF2 /* GoogleService-Info.plist */,
 				14B83AC72A107435004AECF2 /* Info.plist */,
+				14A19C6E2A11561400ADE058 /* GoogleService-Info.plist */,
 				14B83ABF2A107434004AECF2 /* GymIF.xcdatamodeld */,
 				14B83AE12A1087FB004AECF2 /* TextField+Extensions.swift */,
 				14B83AE32A108A56004AECF2 /* UIViewController+Extensions.swift */,
@@ -170,7 +170,7 @@
 			files = (
 				14B83AC62A107435004AECF2 /* LaunchScreen.storyboard in Resources */,
 				14B83AC32A107435004AECF2 /* Assets.xcassets in Resources */,
-				14B83AE02A1080E0004AECF2 /* GoogleService-Info.plist in Resources */,
+				14A19C6F2A11561400ADE058 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

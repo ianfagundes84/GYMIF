@@ -19,13 +19,18 @@ final class LoginViewModel: LoginViewModelContract {
     
     // MARK: - Methods
     func login() {
-        guard let viewController = viewController else { return }
+        guard let viewController = viewController, let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
+              let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject], let clientID = dict["CLIENT_ID"] as? String else { return }
+        
+        let configuration = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = configuration
         GIDSignIn.sharedInstance.signIn(withPresenting: viewController) { signInResult, error in
             guard error == nil else { return }
             print("LOGGED IN")
         }
     }
-
+    
+    
     func logout() {
         GIDSignIn.sharedInstance.signOut()
         print("LOGGED OUT")

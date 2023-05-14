@@ -8,7 +8,6 @@
 import UIKit
 import CoreData
 import FirebaseCore
-import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,32 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Initialize Firebase
         FirebaseApp.configure()
-        
-        let gIdConfiguration = GIDConfiguration(clientID: "877894545674-acpn4v4p5jv1of89jfs8uclp5h2bg1kt.apps.googleusercontent.com")
-        GIDSignIn.sharedInstance.configuration = gIdConfiguration
-        
-        // Check and restore previous login
-        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-          if error != nil || user == nil {
-              
-          } else {
-            // Show the app's signed-in state.
-          }
-        }
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        var handled: Bool
-        
-        // Handle with google sign-in
-        handled = GIDSignIn.sharedInstance.handle(url)
-        if handled {
-            return true
-        }
-        
-        return false
-    }
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -104,11 +80,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
-// MARK:- Notification names
-extension Notification.Name {
-    
-    /// Notification when user successfully sign in using Google
-    static var signInGoogleCompleted: Notification.Name {
-        return .init(rawValue: #function)
-    }
-}
