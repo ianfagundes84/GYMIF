@@ -9,11 +9,13 @@ import UIKit
 import TinyConstraints
 import GoogleSignIn
 
-public protocol LoginDelegate: AnyObject {
-    func didUserLogin()
+protocol LoginViewControllerDisplay: AnyObject {
+    func loginFailure(with message: String)
+    func showLoading()
+    func hideLoading()
 }
 
-class LoginViewController: UIViewController {
+public class LoginViewController: UIViewController {
 
     private var viewModel: LoginViewModel
 
@@ -27,26 +29,26 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Properties
-    let ivLogo = {
+    private lazy var ivLogo = {
         let iv = UIImageView()
         iv.image = UIImage(named: "logo")
         iv.contentMode = .scaleAspectFit
         return iv
     }()
     
-    let btLogin: GIDSignInButton = {
+    private lazy var btLogin: GIDSignInButton = {
         let bt = GIDSignInButton()
         bt.style = .wide
         return bt
     }()
 
-    let btGhostLogin: UIButton = {
+    private lazy var btGhostLogin: UIButton = {
         let bt = UIButton()
         bt.backgroundColor = .clear
         return bt
     }()
 
-    let btLogout: UIButton = {
+    private lazy var btLogout: UIButton = {
         let bt = UIButton()
         bt.titleLabel?.tintColor = .white
         bt.backgroundColor = UIColor(red: 0.825, green: 0.035, blue: 0.362, alpha: 1.0)
@@ -70,7 +72,7 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - LifeCycle
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel.viewController = self
         setupHierarchy()
@@ -115,4 +117,11 @@ class LoginViewController: UIViewController {
         btLogout.leadingToSuperview(offset: 36)
         btLogout.trailingToSuperview(offset: 36)
     }
+}
+
+// TODO: - Implement this cases if needed.
+extension LoginViewController: LoginViewControllerDisplay {
+    func loginFailure(with message: String) {}
+    func showLoading() {}
+    func hideLoading() {}
 }

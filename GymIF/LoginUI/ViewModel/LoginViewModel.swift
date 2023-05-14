@@ -15,7 +15,13 @@ protocol LoginViewModelContract: AnyObject {
 
 final class LoginViewModel: LoginViewModelContract {
     // MARK: - Properties
-    weak var viewController: UIViewController?
+    private let coordinator: LoginCoordinating
+    weak var viewController: LoginViewController?
+    
+    //MARK: - Initializers
+    init(coordinator: LoginCoordinating) {
+        self.coordinator = coordinator
+    }
     
     // MARK: - Methods
     func login() {
@@ -24,12 +30,11 @@ final class LoginViewModel: LoginViewModelContract {
         
         let configuration = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = configuration
-        GIDSignIn.sharedInstance.signIn(withPresenting: viewController) { signInResult, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: viewController) { [weak self] signInResult, error in
             guard error == nil else { return }
-            print("LOGGED IN")
+            self?.coordinator.perform(action: .openHome)
         }
     }
-    
     
     func logout() {
         GIDSignIn.sharedInstance.signOut()

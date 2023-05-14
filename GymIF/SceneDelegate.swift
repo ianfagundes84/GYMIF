@@ -17,8 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         self.window = UIWindow(windowScene: windowScene)
-        let viewController = LoginViewController(viewModel: LoginViewModel())
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let navigationController = UINavigationController()
+        AppRouter.shared.send(action: .openLogin, from: navigationController)
+        
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
@@ -59,7 +60,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
-
 }
 
