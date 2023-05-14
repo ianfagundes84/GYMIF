@@ -9,7 +9,22 @@ import UIKit
 import TinyConstraints
 import GoogleSignIn
 
+public protocol LoginDelegate: AnyObject {
+    func didUserLogin()
+}
+
 class ViewController: UIViewController {
+
+    private var viewModel: LoginViewModel
+
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Properties
     let ivLogo = {
@@ -24,22 +39,43 @@ class ViewController: UIViewController {
         bt.style = .wide
         return bt
     }()
-    
-    let btLogout = {
+
+    let btGhostLogin: UIButton = {
         let bt = UIButton()
-        bt.layer.cornerRadius = 25
+        bt.backgroundColor = .clear
+        return bt
+    }()
+
+    let btLogout: UIButton = {
+        let bt = UIButton()
         bt.titleLabel?.tintColor = .white
         bt.backgroundColor = UIColor(red: 0.825, green: 0.035, blue: 0.362, alpha: 1.0)
-        bt.titleLabel?.textColor = .white
+        bt.layer.cornerRadius = 25
         bt.setTitle("Logout", for: .normal)
         return bt
     }()
     
+    // MARK: - Actions
+    @objc func loginButtonTapped() {
+        viewModel.login()
+    }
+    
+    @objc func logoutButtonTapped() {
+        viewModel.logout()
+    }
+    
+    func setupButtonActions() {
+        btGhostLogin.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        btLogout.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+    }
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel.viewController = self
         setupHierarchy()
         setupLayout()
+        setupButtonActions()
         hideKeyboardWhenTappedAround()
     }
     
@@ -47,6 +83,7 @@ class ViewController: UIViewController {
     private func setupHierarchy() {
         view.addSubview(ivLogo)
         view.addSubview(btLogin)
+        view.addSubview(btGhostLogin)
         view.addSubview(btLogout)
     }
     
@@ -66,6 +103,12 @@ class ViewController: UIViewController {
         btLogin.leadingToSuperview(offset: 36)
         btLogin.trailingToSuperview(offset: 36)
         
+        // login button constraints
+        btGhostLogin.height(60)
+        btGhostLogin.topToBottom(of: ivLogo, offset: 100)
+        btGhostLogin.leadingToSuperview(offset: 36)
+        btGhostLogin.trailingToSuperview(offset: 36)
+        
         // logout button constraints
         btLogout.height(50)
         btLogout.topToBottom(of: btLogin, offset: 20)
@@ -73,5 +116,3 @@ class ViewController: UIViewController {
         btLogout.trailingToSuperview(offset: 36)
     }
 }
-
-

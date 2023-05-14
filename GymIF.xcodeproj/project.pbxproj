@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14A19C672A111F5600ADE058 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14A19C662A111F5600ADE058 /* GoogleSignInSwift */; };
+		14A19C692A112BE600ADE058 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A19C682A112BE600ADE058 /* LoginViewModel.swift */; };
 		14B83AB72A107434004AECF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83AB62A107434004AECF2 /* AppDelegate.swift */; };
 		14B83AB92A107434004AECF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83AB82A107434004AECF2 /* SceneDelegate.swift */; };
 		14B83ABB2A107434004AECF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83ABA2A107434004AECF2 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14A19C682A112BE600ADE058 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		14B83AB32A107434004AECF2 /* GymIF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymIF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B83AB62A107434004AECF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14B83AB82A107434004AECF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				14B83AB62A107434004AECF2 /* AppDelegate.swift */,
 				14B83AB82A107434004AECF2 /* SceneDelegate.swift */,
 				14B83ABA2A107434004AECF2 /* ViewController.swift */,
+				14A19C682A112BE600ADE058 /* LoginViewModel.swift */,
 				14B83AC22A107435004AECF2 /* Assets.xcassets */,
 				14B83AC42A107435004AECF2 /* LaunchScreen.storyboard */,
 				14B83ADF2A1080E0004AECF2 /* GoogleService-Info.plist */,
@@ -184,6 +187,7 @@
 				14B83AB92A107434004AECF2 /* SceneDelegate.swift in Sources */,
 				14B83AE42A108A56004AECF2 /* UIViewController+Extensions.swift in Sources */,
 				14B83AE22A1087FB004AECF2 /* TextField+Extensions.swift in Sources */,
+				14A19C692A112BE600ADE058 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
