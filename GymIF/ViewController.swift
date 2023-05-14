@@ -40,6 +40,11 @@ class ViewController: UIViewController {
     
     let btLogin = {
         let bt = UIButton()
+        bt.layer.cornerRadius = 25
+        bt.titleLabel?.tintColor = .white
+        bt.backgroundColor = UIColor(red: 0.825, green: 0.035, blue: 0.362, alpha: 1.0)
+        bt.titleLabel?.textColor = .white
+        bt.setTitle("Login", for: .normal)
         return bt
     }()
     
@@ -68,13 +73,13 @@ class ViewController: UIViewController {
         
         // logo constraints
         ivLogo.centerXToSuperview()
-        ivLogo.centerYToSuperview(offset: -100)
+        ivLogo.centerYToSuperview(offset: -60)
         ivLogo.width(200)
         ivLogo.height(200)
         
         // username Textfield constraints
         tfUserName.height(50)
-        tfUserName.topToBottom(of: ivLogo, offset: 100)
+        tfUserName.topToBottom(of: ivLogo, offset: 80)
         tfUserName.leadingToSuperview(offset: 36)
         tfUserName.trailingToSuperview(offset: 36)
         
@@ -83,6 +88,12 @@ class ViewController: UIViewController {
         tfUserPassword.topToBottom(of: tfUserName, offset: 20)
         tfUserPassword.leadingToSuperview(offset: 36)
         tfUserPassword.trailingToSuperview(offset: 36)
+        
+        // login button constraints
+        btLogin.height(50)
+        btLogin.topToBottom(of: tfUserPassword, offset: 20)
+        btLogin.leadingToSuperview(offset: 36)
+        btLogin.trailingToSuperview(offset: 36)
     }
 }
 
