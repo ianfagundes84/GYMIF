@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 25
         tf.setLeadingPadding(16)
-        tf.placeholder = "Please enter your account password"
+        tf.placeholder = "Please enter your account password."
         return tf
     }()
     
