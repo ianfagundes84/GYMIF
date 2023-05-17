@@ -7,13 +7,21 @@
 
 import Foundation
 import UIKit
+import TinyConstraints
 
 public class HomeViewController: UIViewController {
     
-    private lazy var lbTeste: UILabel = {
-        let lb = UILabel()
-        return lb
+    lazy var tableView: UITableView = {
+        let tv = UITableView(frame: .zero, style: .plain)
+        tv.dataSource = self
+        tv.delegate = self
+        tv.separatorStyle = .none
+        tv.backgroundColor = UIColor.systemBackground
+        tv.estimatedRowHeight = 100
+        tv.register(WorkOutTableViewCell.self, forCellReuseIdentifier: WorkOutTableViewCell.identifier)
+        return tv
     }()
+    
     private var viewModel: HomeViewModel
     
     init(viewModel: HomeViewModel) {
@@ -28,20 +36,41 @@ public class HomeViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel.viewController = self
-        setupHierarchy()
-        setupLayout()
+        buildViewHierarchy()
+        setupConstraints()
     }
     
     // MARK: - Hierarchy
-    private func setupHierarchy() {
-        view.addSubview(lbTeste)
+    private func buildViewHierarchy() {
+        view.addSubview(tableView)
     }
     
     // MARK: - Layout
-    private func setupLayout() {
-        view.backgroundColor = .white
+    private func setupConstraints() {
+        tableView.topToSuperview(offset: 160)
+        tableView.bottomToSuperview(offset: -80)
+        tableView.leadingToSuperview(offset: 16)
+        tableView.trailingToSuperview(offset: 16)
         
-        // logo constraints
-        lbTeste.centerInSuperview()
+        view.backgroundColor = .white
     }
+}
+
+// MARK: - UITableViewDataSource
+extension HomeViewController: UITableViewDataSource {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: WorkOutTableViewCell.identifier, for: indexPath)
+        // TODO: - cell.configure, cell.delegate = self
+        return cell
+    }
+    
+    
+}
+
+extension HomeViewController: UITableViewDelegate {
+    
 }

@@ -100,13 +100,12 @@ public class LoginViewController: UIViewController {
         ivLogo.height(200)
         
         // login button constraints
-        btLogin.height(60)
         btLogin.topToBottom(of: ivLogo, offset: 100)
         btLogin.leadingToSuperview(offset: 36)
         btLogin.trailingToSuperview(offset: 36)
         
         // login button constraints
-        btGhostLogin.height(60)
+        btGhostLogin.height(50)
         btGhostLogin.topToBottom(of: ivLogo, offset: 100)
         btGhostLogin.leadingToSuperview(offset: 36)
         btGhostLogin.trailingToSuperview(offset: 36)

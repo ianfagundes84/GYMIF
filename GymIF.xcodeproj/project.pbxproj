@@ -18,6 +18,7 @@
 		14B217C22A116FA10068DF9B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B217C12A116FA10068DF9B /* HomeViewModel.swift */; };
 		14B217C72A1177260068DF9B /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B217C62A1177260068DF9B /* LoginCoordinator.swift */; };
 		14B217C92A1177390068DF9B /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B217C82A1177390068DF9B /* LoginFactory.swift */; };
+		14B217CC2A119D4A0068DF9B /* WorkOutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B217CB2A119D4A0068DF9B /* WorkOutTableViewCell.swift */; };
 		14B83AB72A107434004AECF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83AB62A107434004AECF2 /* AppDelegate.swift */; };
 		14B83AB92A107434004AECF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83AB82A107434004AECF2 /* SceneDelegate.swift */; };
 		14B83ABB2A107434004AECF2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B83ABA2A107434004AECF2 /* LoginViewController.swift */; };
@@ -46,6 +47,7 @@
 		14B217C12A116FA10068DF9B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		14B217C62A1177260068DF9B /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		14B217C82A1177390068DF9B /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
+		14B217CB2A119D4A0068DF9B /* WorkOutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkOutTableViewCell.swift; sourceTree = "<group>"; };
 		14B83AB32A107434004AECF2 /* GymIF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymIF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B83AB62A107434004AECF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14B83AB82A107434004AECF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		14B217C32A116FBD0068DF9B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				14B217CA2A119D2C0068DF9B /* Cells */,
 				14B217BD2A116CC50068DF9B /* HomeViewController.swift */,
 			);
 			path = ViewController;
@@ -155,6 +158,14 @@
 				14B217C12A116FA10068DF9B /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		14B217CA2A119D2C0068DF9B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				14B217CB2A119D4A0068DF9B /* WorkOutTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		14B83AAA2A107434004AECF2 = {
@@ -280,6 +291,7 @@
 				14B83ABB2A107434004AECF2 /* LoginViewController.swift in Sources */,
 				14B217BC2A116C8B0068DF9B /* HomeFactory.swift in Sources */,
 				14B217C72A1177260068DF9B /* LoginCoordinator.swift in Sources */,
+				14B217CC2A119D4A0068DF9B /* WorkOutTableViewCell.swift in Sources */,
 				14B83AB72A107434004AECF2 /* AppDelegate.swift in Sources */,
 				14B83AC12A107434004AECF2 /* GymIF.xcdatamodeld in Sources */,
 				14B83AB92A107434004AECF2 /* SceneDelegate.swift in Sources */,
