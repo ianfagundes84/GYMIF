@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		149280E32A16A7AD00CD1F93 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 149280E22A16A7AD00CD1F93 /* Kingfisher */; };
+		149280E62A16AED300CD1F93 /* FirestoreWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149280E52A16AED300CD1F93 /* FirestoreWorkout.swift */; };
+		149280E92A16B04600CD1F93 /* FirestoreWorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149280E82A16B04600CD1F93 /* FirestoreWorkoutManager.swift */; };
 		14A19C672A111F5600ADE058 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14A19C662A111F5600ADE058 /* GoogleSignInSwift */; };
 		14A19C692A112BE600ADE058 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A19C682A112BE600ADE058 /* LoginViewModel.swift */; };
 		14A19C6F2A11561400ADE058 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14A19C6E2A11561400ADE058 /* GoogleService-Info.plist */; };
@@ -44,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		149280E52A16AED300CD1F93 /* FirestoreWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreWorkout.swift; sourceTree = "<group>"; };
+		149280E82A16B04600CD1F93 /* FirestoreWorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreWorkoutManager.swift; sourceTree = "<group>"; };
 		14A19C682A112BE600ADE058 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		14A19C6E2A11561400ADE058 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14A9DFA12A116798008D19AE /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -82,6 +87,7 @@
 				14B83AD62A107EB6004AECF2 /* FirebaseAnalyticsSwift in Frameworks */,
 				14B83AD42A107EB6004AECF2 /* FirebaseAnalytics in Frameworks */,
 				14B83ADA2A107EB6004AECF2 /* FirebaseCrashlytics in Frameworks */,
+				149280E32A16A7AD00CD1F93 /* Kingfisher in Frameworks */,
 				14A19C672A111F5600ADE058 /* GoogleSignInSwift in Frameworks */,
 				14B83ACF2A1075B0004AECF2 /* TinyConstraints in Frameworks */,
 				14B83ADE2A107EB6004AECF2 /* FirebaseStorage in Frameworks */,
@@ -93,6 +99,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		149280E42A16AEBF00CD1F93 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				149280E52A16AED300CD1F93 /* FirestoreWorkout.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		149280E72A16B01500CD1F93 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				149280E82A16B04600CD1F93 /* FirestoreWorkoutManager.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
 		14A9DF9B2A115F55008D19AE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +182,7 @@
 		14B217BA2A116C770068DF9B /* HomeUI */ = {
 			isa = PBXGroup;
 			children = (
+				149280E42A16AEBF00CD1F93 /* Model */,
 				14B217BB2A116C8B0068DF9B /* HomeFactory.swift */,
 				14B217BF2A116D640068DF9B /* HomeCoordinator.swift */,
 				14BF190A2A15AEE200F3EF41 /* WorkoutFactory.swift */,
@@ -215,12 +238,13 @@
 		14B83AB52A107434004AECF2 /* GymIF */ = {
 			isa = PBXGroup;
 			children = (
-				14B217BA2A116C770068DF9B /* HomeUI */,
 				14A9DF9C2A115F63008D19AE /* LoginUI */,
+				14B217BA2A116C770068DF9B /* HomeUI */,
 				14B83AC22A107435004AECF2 /* Assets.xcassets */,
 				14B83AB62A107434004AECF2 /* AppDelegate.swift */,
 				14B83AB82A107434004AECF2 /* SceneDelegate.swift */,
 				14A9DFA02A116789008D19AE /* Coordinator */,
+				149280E72A16B01500CD1F93 /* Remote */,
 				14BF19102A15DD9A00F3EF41 /* CoreData */,
 				14A9DF9F2A115FDA008D19AE /* UIExtensions */,
 				14A9DF9B2A115F55008D19AE /* Scenes */,
@@ -264,6 +288,7 @@
 				14B83ADB2A107EB6004AECF2 /* FirebaseFirestore */,
 				14B83ADD2A107EB6004AECF2 /* FirebaseStorage */,
 				14A19C662A111F5600ADE058 /* GoogleSignInSwift */,
+				149280E22A16A7AD00CD1F93 /* Kingfisher */,
 			);
 			productName = GymIF;
 			productReference = 14B83AB32A107434004AECF2 /* GymIF.app */;
@@ -297,6 +322,7 @@
 				14B83ACD2A1075B0004AECF2 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
 				14B83AD22A107EB6004AECF2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				14A19C652A111F5600ADE058 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				149280E12A16A7AD00CD1F93 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 14B83AB42A107434004AECF2 /* Products */;
 			projectDirPath = "";
@@ -325,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				149280E92A16B04600CD1F93 /* FirestoreWorkoutManager.swift in Sources */,
 				14BF190F2A15B2C300F3EF41 /* WorkOutViewModel.swift in Sources */,
 				14BF190D2A15AEF200F3EF41 /* WorkoutCoordinator.swift in Sources */,
 				14B83ABB2A107434004AECF2 /* LoginViewController.swift in Sources */,
@@ -336,6 +363,7 @@
 				14BF19122A15DDAC00F3EF41 /* CoreDataManager.swift in Sources */,
 				14B83AB92A107434004AECF2 /* SceneDelegate.swift in Sources */,
 				14B217C02A116D640068DF9B /* HomeCoordinator.swift in Sources */,
+				149280E62A16AED300CD1F93 /* FirestoreWorkout.swift in Sources */,
 				14A9DFA22A116798008D19AE /* AppRouter.swift in Sources */,
 				14BF19072A15A97200F3EF41 /* ExerciseForm.swift in Sources */,
 				14BF19052A15A95500F3EF41 /* WorkoutForm.swift in Sources */,
@@ -563,6 +591,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		149280E12A16A7AD00CD1F93 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		14A19C652A111F5600ADE058 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -590,6 +626,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		149280E22A16A7AD00CD1F93 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 149280E12A16A7AD00CD1F93 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		14A19C662A111F5600ADE058 /* GoogleSignInSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 14A19C652A111F5600ADE058 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;

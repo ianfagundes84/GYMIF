@@ -102,11 +102,12 @@ extension HomeViewController: UITableViewDataSource {
         
         cell.onLongPress = { [weak self, weak tableView] in
             guard let self = self, let tableView = tableView else { return }
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { 
                 if let index = self.homeViewModel.workouts.firstIndex(of: workout) {
-                    self.workoutViewModel.deleteWorkout(workout: workout)
-                    self.homeViewModel.workouts.remove(at: index)
-                    tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                    self.workoutViewModel.deleteWorkout(workout: workout) { _ in
+                        self.homeViewModel.workouts.remove(at: index)
+                        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                    }
                 }
             }
         }

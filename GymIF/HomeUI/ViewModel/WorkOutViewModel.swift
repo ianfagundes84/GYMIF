@@ -14,8 +14,10 @@ public protocol WorkoutViewModelDelegate: AnyObject {
     func dismissWorkoutForm()
 }
 
-class WorkoutViewModel {    
+class WorkoutViewModel {
     weak var delegate: WorkoutViewModelDelegate?
+    
+    let workoutManager = FirestoreWorkoutManager.shared
     
     var workouts: [Workout] = []
     
@@ -27,28 +29,19 @@ class WorkoutViewModel {
 }
 
 extension WorkoutViewModel {
-    func createWorkout(name: String, description: String, date: Date) -> Workout {
-        let workout: Workout = CoreDataManager.shared.create(Workout.self)
-        workout.workoutName = name
-        workout.workoutDescription = description
-        workout.workoutDate = date
-        CoreDataManager.shared.saveContext()
-        return workout
+    func createWorkout(name: String, description: String, date: Date, completion: @escaping (Result<Workout, Error>) -> Void) {
+        workoutManager.createWorkout(name: name, description: description, date: date, completion: completion)
     }
-
+    
     func fetchWorkouts() -> [Workout] {
         return CoreDataManager.shared.fetch(Workout.self)
     }
-
-    func updateWorkout(workout: Workout, name: String, description: String, date: Date) {
-        workout.workoutName = name
-        workout.workoutDescription = description
-        workout.workoutDate = date
-        CoreDataManager.shared.saveContext()
+    
+    func updateWorkout(workout: Workout, completion: @escaping (Result<Workout, Error>) -> Void) {
+        workoutManager.updateWorkout(workout: workout, completion: completion)
     }
-
-    func deleteWorkout(workout: Workout) {
-        CoreDataManager.shared.delete(workout)
-        CoreDataManager.shared.saveContext()
+    
+    func deleteWorkout(workout: Workout, completion: @escaping (Result<Void, Error>) -> Void) {
+        workoutManager.deleteWorkout(workout: workout, completion: completion)
     }
 }

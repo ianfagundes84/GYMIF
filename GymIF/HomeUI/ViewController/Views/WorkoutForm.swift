@@ -131,11 +131,15 @@ extension WorkoutForm: UITextFieldDelegate {
         let textFieldsToValidate = [tfWorkoutName, tfWorkoutDescription]
         if formValidation(textFields: textFieldsToValidate) {
             if let workout = workout {
-                viewModel?.updateWorkout(workout: workout, name: tfWorkoutName.text!, description: tfWorkoutDescription.text!, date: Date())
-                viewModel?.delegate?.dismissWorkoutForm()
+                workout.workoutName = tfWorkoutName.text!
+                workout.workoutDescription = tfWorkoutDescription.text!
+                viewModel?.updateWorkout(workout: workout) { [ weak self] _ in
+                    self?.viewModel?.delegate?.dismissWorkoutForm()
+                }
             } else {
-                _ = viewModel?.createWorkout(name: tfWorkoutName.text!, description: tfWorkoutDescription.text!, date: Date())
-                viewModel?.delegate?.dismissWorkoutForm()
+                _ = viewModel?.createWorkout(name: tfWorkoutName.text!, description: tfWorkoutDescription.text!, date: Date()) { [weak self] _ in
+                    self?.viewModel?.delegate?.dismissWorkoutForm()
+                }
             }
         } else {
             textFieldsToValidate.forEach { $0.changeBorderColorIfEmpty() }
