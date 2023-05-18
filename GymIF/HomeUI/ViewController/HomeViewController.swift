@@ -30,11 +30,13 @@ public class HomeViewController: UIViewController {
         return bt
     }()
     
-    private var viewModel: HomeViewModel
+    private var homeViewModel: HomeViewModel
+    private var workoutViewModel: WorkoutViewModel
     
     // MARK: - Initializer
-    init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
+    init(viewModel: HomeViewModel, workoutViewModel: WorkoutViewModel) {
+        self.homeViewModel = viewModel
+        self.workoutViewModel = workoutViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -44,15 +46,22 @@ public class HomeViewController: UIViewController {
     
     // MARK: - Functions
     func addWorkout() {
-        viewModel.appRouter?.send(action: .presentWorkoutForm(delegate: self))
+        homeViewModel.appRouter?.send(action: .presentWorkoutForm(delegate: self))
     }
+    
+    private func fetchWorkouts() {
+        self.homeViewModel.workouts = workoutViewModel.fetchWorkouts()
+        tableView.reloadData()
+    }
+    
     // MARK: - Lifecycle
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel.viewController = self
+        self.homeViewModel.viewController = self
         buildViewHierarchy()
         setupConstraints()
+        fetchWorkouts()
     }
     
     // MARK: - Hierarchy
@@ -80,12 +89,15 @@ public class HomeViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension HomeViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return homeViewModel.workouts.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WorkOutTableViewCell.identifier, for: indexPath)
-        // TODO: - cell.configure, cell.delegate = self
+        let cell = tableView.dequeueReusableCell(withIdentifier: WorkOutTableViewCell.identifier, for: indexPath) as! WorkOutTableViewCell
+        if let workout = homeViewModel.workouts[indexPath.row] as? Workout {
+            cell.configure(workout: workout)
+        }
+        
         return cell
     }
     
@@ -94,13 +106,13 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {}
 
-extension HomeViewController: WorkoutViewModelDelegate {
+extension HomeViewController: WorkoutViewModelDelegate {    
     public func didUpdateWorkout() {
-        
+        fetchWorkouts()
     }
     
     public func dismissWorkoutForm() {
         dismiss(animated: true)
+        fetchWorkouts()
     }
-    
 }

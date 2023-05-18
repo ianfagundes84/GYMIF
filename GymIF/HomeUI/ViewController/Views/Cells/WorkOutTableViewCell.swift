@@ -27,6 +27,22 @@ class WorkOutTableViewCell: UITableViewCell {
         return card
     }()
     
+    lazy var lbWorkoutName: UILabel = {
+        let lb = UILabel()
+        lb.textAlignment = .center
+        lb.numberOfLines = 0
+        lb.lineBreakMode = .byWordWrapping
+        return lb
+    }()
+    
+    lazy var lbWorkoutDescription: UILabel = {
+        let lb = UILabel()
+        lb.textAlignment = .center
+        lb.numberOfLines = 0
+        lb.lineBreakMode = .byWordWrapping
+        return lb
+    }()
+    
     // MARK: - Cell reuse
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,11 +60,21 @@ class WorkOutTableViewCell: UITableViewCell {
     
     func buildViewHierarchy() {
         contentView.addSubview(cardView)
+        cardView.addSubview(lbWorkoutName)
+        cardView.addSubview(lbWorkoutDescription)
     }
     
     func setupConstraints() {
         cardView.edgesToSuperview(insets: UIEdgeInsets(top: 50, left: 16, bottom: 50, right: 16))
         cardView.height(200, relation: .equalOrGreater)
+        
+        lbWorkoutName.topToSuperview(offset: 24)
+        lbWorkoutName.leadingToSuperview(offset: 16)
+        lbWorkoutName.trailingToSuperview(offset: 16)
+        
+        lbWorkoutDescription.centerYToSuperview()
+        lbWorkoutDescription.leadingToSuperview(offset: 16)
+        lbWorkoutDescription.trailingToSuperview(offset: 16)
     }
     
     func configureViews() {
@@ -56,6 +82,8 @@ class WorkOutTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    func configure(title: String) {
+    func configure(workout: Workout) {
+        lbWorkoutName.text = workout.workoutName
+        lbWorkoutDescription.text = workout.workoutDescription
     }
 }

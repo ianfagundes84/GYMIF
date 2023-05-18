@@ -9,13 +9,18 @@ import UIKit
 
 public enum HomeFactory {
     public static func make(appRouter: AppRouterContract) -> HomeViewController {
-        let coordinator: HomeCoordinating = HomeCoordinator(appRouter: appRouter)
-        let viewModel = HomeViewModel(coordinator: coordinator, appRouter: appRouter)
-        let viewController = HomeViewController(viewModel: viewModel)
-        viewModel.viewController = viewController
-        coordinator.viewController = viewController
+        let homeCoordinator: HomeCoordinating = HomeCoordinator(appRouter: appRouter)
+        
+        let workoutCoordinator: WorkoutCoordinating = WorkoutCoordinator(appRouter: appRouter)
+        let workoutViewModel = WorkoutViewModel(coordinator: workoutCoordinator)
+        let homeViewModel = HomeViewModel(coordinator: homeCoordinator, appRouter: appRouter, workoutViewModel: workoutViewModel)
+        
+        let viewController = HomeViewController(viewModel: homeViewModel, workoutViewModel: workoutViewModel)
+        homeViewModel.viewController = viewController
+        homeCoordinator.viewController = viewController
 
         return viewController
     }
 }
+
 

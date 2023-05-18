@@ -6,31 +6,49 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
 public protocol WorkoutViewModelDelegate: AnyObject {
     func didUpdateWorkout()
     func dismissWorkoutForm()
 }
 
-class WorkoutViewModel {
+class WorkoutViewModel {    
     weak var delegate: WorkoutViewModelDelegate?
     
-    private var workout: Workout? {
-        didSet {
-            delegate?.didUpdateWorkout()
-        }
-    }
+    var workouts: [Workout] = []
     
     private let coordinator: WorkoutCoordinating
-
+    
     init(coordinator: WorkoutCoordinating) {
         self.coordinator = coordinator
     }
+}
 
-    func loadWorkout(withId id: String) {
+extension WorkoutViewModel {
+    func createWorkout(name: String, description: String, date: Date) -> Workout {
+        let workout: Workout = CoreDataManager.shared.create(Workout.self)
+        workout.workoutName = name
+        workout.workoutDescription = description
+        workout.workoutDate = date
+        CoreDataManager.shared.saveContext()
+        return workout
     }
 
-    func getWorkoutName() -> String {
-        return ""
+    func fetchWorkouts() -> [Workout] {
+        return CoreDataManager.shared.fetch(Workout.self)
+    }
+
+    func updateWorkout(workout: Workout, name: String, description: String, date: Date) {
+        workout.workoutName = name
+        workout.workoutDescription = description
+        workout.workoutDate = date
+        CoreDataManager.shared.saveContext()
+    }
+
+    func deleteWorkout(workout: Workout) {
+        CoreDataManager.shared.delete(workout)
+        CoreDataManager.shared.saveContext()
     }
 }

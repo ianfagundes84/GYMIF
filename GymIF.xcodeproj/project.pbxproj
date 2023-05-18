@@ -40,6 +40,7 @@
 		14BF190B2A15AEE200F3EF41 /* WorkoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF190A2A15AEE200F3EF41 /* WorkoutFactory.swift */; };
 		14BF190D2A15AEF200F3EF41 /* WorkoutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF190C2A15AEF200F3EF41 /* WorkoutCoordinator.swift */; };
 		14BF190F2A15B2C300F3EF41 /* WorkOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF190E2A15B2C300F3EF41 /* WorkOutViewModel.swift */; };
+		14BF19122A15DDAC00F3EF41 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BF19112A15DDAC00F3EF41 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		14BF190A2A15AEE200F3EF41 /* WorkoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFactory.swift; sourceTree = "<group>"; };
 		14BF190C2A15AEF200F3EF41 /* WorkoutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCoordinator.swift; sourceTree = "<group>"; };
 		14BF190E2A15B2C300F3EF41 /* WorkOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkOutViewModel.swift; sourceTree = "<group>"; };
+		14BF19112A15DDAC00F3EF41 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 		14B83AB52A107434004AECF2 /* GymIF */ = {
 			isa = PBXGroup;
 			children = (
+				14BF19102A15DD9A00F3EF41 /* CoreData */,
 				14B217BA2A116C770068DF9B /* HomeUI */,
 				14A9DF9C2A115F63008D19AE /* LoginUI */,
 				14B83AC22A107435004AECF2 /* Assets.xcassets */,
@@ -226,6 +229,14 @@
 				14B83ABF2A107434004AECF2 /* GymIF.xcdatamodeld */,
 			);
 			path = GymIF;
+			sourceTree = "<group>";
+		};
+		14BF19102A15DD9A00F3EF41 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				14BF19112A15DDAC00F3EF41 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 				14B217CC2A119D4A0068DF9B /* WorkOutTableViewCell.swift in Sources */,
 				14B83AB72A107434004AECF2 /* AppDelegate.swift in Sources */,
 				14B83AC12A107434004AECF2 /* GymIF.xcdatamodeld in Sources */,
+				14BF19122A15DDAC00F3EF41 /* CoreDataManager.swift in Sources */,
 				14B83AB92A107434004AECF2 /* SceneDelegate.swift in Sources */,
 				14B217C02A116D640068DF9B /* HomeCoordinator.swift in Sources */,
 				14A9DFA22A116798008D19AE /* AppRouter.swift in Sources */,

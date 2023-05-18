@@ -64,11 +64,10 @@ public class WorkoutForm: UIView {
     }
     
     func setupLayout() {
-        cardView.topToSuperview(offset: 250)
-        cardView.bottomToSuperview(offset: -250)
+        cardView.height(350)
+        cardView.centerYToSuperview()
         cardView.leadingToSuperview(offset: 16)
         cardView.trailingToSuperview(offset: 16)
-        cardView.centerInSuperview()
         
         tfWorkoutName.topToSuperview(offset: 64)
         tfWorkoutName.leadingToSuperview(offset: 16)
@@ -106,6 +105,7 @@ extension WorkoutForm: UITextFieldDelegate {
 
 extension WorkoutForm {
     func workoutCreationTapped() {
+        viewModel?.createWorkout(name: "Teste", description: "Teste", date: Date())
         viewModel?.delegate?.dismissWorkoutForm()
     }
 }
