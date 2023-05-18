@@ -151,7 +151,6 @@
 				14BF19042A15A95500F3EF41 /* WorkoutForm.swift */,
 				14BF19062A15A97200F3EF41 /* ExerciseForm.swift */,
 				14B217CA2A119D2C0068DF9B /* Cells */,
-				14A9DF9C2A115F63008D19AE /* LoginUI */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,11 +213,12 @@
 		14B83AB52A107434004AECF2 /* GymIF */ = {
 			isa = PBXGroup;
 			children = (
-				14A9DFA02A116789008D19AE /* Coordinator */,
 				14B217BA2A116C770068DF9B /* HomeUI */,
+				14A9DF9C2A115F63008D19AE /* LoginUI */,
+				14B83AC22A107435004AECF2 /* Assets.xcassets */,
 				14B83AB62A107434004AECF2 /* AppDelegate.swift */,
 				14B83AB82A107434004AECF2 /* SceneDelegate.swift */,
-				14B83AC22A107435004AECF2 /* Assets.xcassets */,
+				14A9DFA02A116789008D19AE /* Coordinator */,
 				14A9DF9F2A115FDA008D19AE /* UIExtensions */,
 				14A9DF9B2A115F55008D19AE /* Scenes */,
 				14B83AC72A107435004AECF2 /* Info.plist */,

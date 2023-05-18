@@ -92,9 +92,7 @@ extension HomeViewController: UITableViewDataSource {
     
 }
 
-extension HomeViewController: UITableViewDelegate {
-    
-}
+extension HomeViewController: UITableViewDelegate {}
 
 extension HomeViewController: WorkoutViewModelDelegate {
     public func didUpdateWorkout() {
