@@ -50,7 +50,5 @@ extension WorkoutViewModel {
     func deleteWorkout(workout: Workout) {
         CoreDataManager.shared.delete(workout)
         CoreDataManager.shared.saveContext()
-        
-        workouts = fetchWorkouts()
     }
 }

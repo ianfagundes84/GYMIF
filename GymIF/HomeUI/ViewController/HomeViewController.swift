@@ -51,7 +51,9 @@ public class HomeViewController: UIViewController {
     
     private func fetchWorkouts() {
         self.homeViewModel.workouts = workoutViewModel.fetchWorkouts()
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Lifecycle
@@ -101,9 +103,13 @@ extension HomeViewController: UITableViewDataSource {
             guard let self = self, let tableView = tableView else { return }
             DispatchQueue.main.async {
                 if let index = self.homeViewModel.workouts.firstIndex(of: workout) {
+                    self.workoutViewModel.deleteWorkout(workout: workout)
                     self.homeViewModel.workouts.remove(at: index)
                     tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .fade)
                 }
+            }
+            cell.onEdit = { [weak self] in
+                self?.editWorkout(workout)
             }
         }
         return cell
@@ -120,5 +126,9 @@ extension HomeViewController: WorkoutViewModelDelegate {
     public func dismissWorkoutForm() {
         dismiss(animated: true)
         fetchWorkouts()
+    }
+    
+    public func editWorkout(_ workout: Workout) {
+                
     }
 }

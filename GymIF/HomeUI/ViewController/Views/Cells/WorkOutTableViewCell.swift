@@ -12,7 +12,10 @@ import TinyConstraints
 class WorkOutTableViewCell: UITableViewCell {
     
     // MARK: - Properties
+    // Closures
     var onLongPress: (() -> Void)?
+    var onEdit: (() -> Void)?
+    
     static let identifier : String = "identifier"
     
     lazy var cardView: UIView = {
@@ -43,6 +46,14 @@ class WorkOutTableViewCell: UITableViewCell {
         return lb
     }()
     
+    lazy var btEdit: UIButton = {
+        let bt = UIButton(type: .system)
+        bt.setImage(UIImage(systemName: "pencil"), for: .normal)
+        bt.addTarget(self, action: #selector(handleEdit), for: .touchUpInside)
+        bt.tintColor = UIColor(named: "PrimaryColor")
+        return bt
+    }()
+    
     // MARK: - Cell reuse
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -69,10 +80,15 @@ class WorkOutTableViewCell: UITableViewCell {
         }
     }
     
+    @objc private func handleEdit() {
+        onEdit?()
+    }
+    
     func buildViewHierarchy() {
         contentView.addSubview(cardView)
         cardView.addSubview(lbWorkoutName)
         cardView.addSubview(lbWorkoutDescription)
+        cardView.addSubview(btEdit)
     }
     
     func setupConstraints() {
@@ -86,6 +102,11 @@ class WorkOutTableViewCell: UITableViewCell {
         lbWorkoutDescription.centerYToSuperview()
         lbWorkoutDescription.leadingToSuperview(offset: 16)
         lbWorkoutDescription.trailingToSuperview(offset: 16)
+        
+        btEdit.topToSuperview(offset: 24)
+        btEdit.trailingToSuperview(offset: 24)
+        btEdit.width(36)
+        btEdit.height(36)
     }
     
     func configureViews() {
