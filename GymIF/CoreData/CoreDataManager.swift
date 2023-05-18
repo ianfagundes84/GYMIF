@@ -56,3 +56,32 @@ class CoreDataManager {
         }
     }
 }
+
+extension CoreDataManager {
+    
+    func getOrCreateWorkout(from firestoreWorkout: FirestoreWorkout) -> Workout? {
+        let fetchRequest: NSFetchRequest<Workout> = Workout.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", firestoreWorkout.id ?? "")
+        
+        do {
+            let fetchedWorkouts = try context.fetch(fetchRequest)
+            if let existingWorkout = fetchedWorkouts.first {
+                // Found an existing workout, return it
+                return existingWorkout
+            } else {
+                // No existing workout found, create a new one
+                let newWorkout = Workout(context: context)
+                newWorkout.id = firestoreWorkout.id
+                newWorkout.workoutName = firestoreWorkout.name
+                newWorkout.workoutDescription = firestoreWorkout.description
+                newWorkout.workoutDate = firestoreWorkout.date
+                saveContext()
+                return newWorkout
+            }
+        } catch let error as NSError {
+            // handle error
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        return nil
+    }
+}

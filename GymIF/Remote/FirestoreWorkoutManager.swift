@@ -43,7 +43,7 @@ class FirestoreWorkoutManager {
             }
         }
     }
-
+    
     private func createCoreDataWorkout(from firestoreWorkout: FirestoreWorkout) -> Workout {
         let coreDataWorkout: Workout = CoreDataManager.shared.create(Workout.self)
         coreDataWorkout.id = firestoreWorkout.id
@@ -53,9 +53,25 @@ class FirestoreWorkoutManager {
         CoreDataManager.shared.saveContext()
         return coreDataWorkout
     }
-
+    
     // MARK: - Fetch
-    func fetchWorkouts(completion: @escaping ([FirestoreWorkout]?, Error?) -> Void) {
+    func fetchWorkouts(completion: @escaping (Result<[Workout], Error>) -> Void) {
+        fetchFirestoreWorkouts { (firestoreWorkouts, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let firestoreWorkouts = firestoreWorkouts {
+                var coreDataWorkouts = [Workout]()
+                for firestoreWorkout in firestoreWorkouts {
+                    if let coreDataWorkout: Workout = CoreDataManager.shared.getOrCreateWorkout(from: firestoreWorkout) {
+                        coreDataWorkouts.append(coreDataWorkout)
+                    }
+                }
+                completion(.success(coreDataWorkouts))
+            }
+        }
+    }
+    
+    private func fetchFirestoreWorkouts(completion: @escaping ([FirestoreWorkout]?, Error?) -> Void) {
         db.collection("workouts").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
@@ -67,11 +83,10 @@ class FirestoreWorkoutManager {
                         try document.data()
                     }
                     switch result {
-                    case .success(let workout):
-                        if let workout = workout as? FirestoreWorkout {
+                    case .success(let data):
+                        if let workout = FirestoreWorkout(dictionary: data) {
+                            workout.id = document.documentID
                             workouts.append(workout)
-                        } else {
-                            print("Document does not exist")
                         }
                     case .failure(let error):
                         print("Error decoding workout: \(error)")
@@ -82,6 +97,7 @@ class FirestoreWorkoutManager {
         }
     }
 
+    
     // MARK: - Update
     func updateWorkout(workout: Workout, completion: @escaping (Result<Workout, Error>) -> Void) {
         guard let firestoreWorkout = FirestoreWorkout(from: workout) else {
@@ -97,7 +113,7 @@ class FirestoreWorkoutManager {
             }
         }
     }
-
+    
     private func updateFirestoreWorkout(workout: FirestoreWorkout, completion: @escaping (Error?) -> Void) {
         if let workoutId = workout.id {
             db.collection("workouts").document(workoutId).setData(workout.dictionary) { error in
@@ -111,7 +127,7 @@ class FirestoreWorkoutManager {
             }
         }
     }
-
+    
     private func updateCoreDataWorkout(with workout: Workout, from firestoreWorkout: FirestoreWorkout) -> Workout {
         let coreDataWorkout: Workout = workout
         coreDataWorkout.workoutName = firestoreWorkout.name
@@ -120,8 +136,8 @@ class FirestoreWorkoutManager {
         CoreDataManager.shared.saveContext()
         return coreDataWorkout
     }
-
-
+    
+    
     // MARK: - Delete
     func deleteWorkout(workout: Workout, completion: @escaping (Result<Void, Error>) -> Void) {
         if let firestoreWorkout = convertToFirestoreWorkout(workout), let firestoreWorkoutId = firestoreWorkout.id {
@@ -141,7 +157,7 @@ class FirestoreWorkoutManager {
             completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Workout id not found"])))
         }
     }
-
+    
     private func deleteFirestoreWorkout(workoutId: String, completion: @escaping (Error?) -> Void) {
         db.collection("workouts").document(workoutId).delete() { error in
             if let error = error {
@@ -153,7 +169,7 @@ class FirestoreWorkoutManager {
             }
         }
     }
-
+    
     private func deleteCoreDataWorkout(workoutId: String) throws {
         let fetchRequest: NSFetchRequest<Workout> = Workout.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", workoutId)

@@ -13,13 +13,24 @@ public class FirestoreWorkout: Codable {
     var name: String
     var description: String
     var date: Date
-
+    
     init(name: String, description: String, date: Date) {
         self.name = name
         self.description = description
         self.date = date
     }
-    
+
+    init?(dictionary: [String: Any]) {
+        guard let name = dictionary["name"] as? String,
+              let description = dictionary["description"] as? String,
+              let timestamp = dictionary["date"] as? Timestamp
+        else { return nil }
+
+        self.name = name
+        self.description = description
+        self.date = timestamp.dateValue()
+    }
+
     convenience init?(from workout: Workout) {
         guard
             let name = workout.workoutName,
@@ -28,6 +39,7 @@ public class FirestoreWorkout: Codable {
         else {
             return nil
         }
+        
         self.init(name: name, description: description, date: date)
         self.id = workout.id
     }
@@ -40,3 +52,4 @@ public class FirestoreWorkout: Codable {
         ]
     }
 }
+
