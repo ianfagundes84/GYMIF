@@ -26,6 +26,8 @@ public class WorkoutForm: UIView {
         tf.layer.cornerRadius = 25
         tf.setLeadingPadding(16)
         tf.placeholder = "Please enter a workout name."
+        tf.delegate = self
+        tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return tf
     }()
     
@@ -36,6 +38,8 @@ public class WorkoutForm: UIView {
         tf.layer.cornerRadius = 25
         tf.setLeadingPadding(16)
         tf.placeholder = "Please enter workout`s description."
+        tf.delegate = self
+        tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return tf
     }()
     
@@ -101,12 +105,24 @@ extension WorkoutForm: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-}
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        textField.resetBorderColorIfNotEmpty()
+    }
+    
+    func formValidation(textFields: [UITextField]) -> Bool {
+        return textFields.allSatisfy { $0.isValid }
+    }
 
-extension WorkoutForm {
     func workoutCreationTapped() {
-        viewModel?.createWorkout(name: "Teste", description: "Teste", date: Date())
-        viewModel?.delegate?.dismissWorkoutForm()
+        let textFieldsToValidate = [tfWorkoutName, tfWorkoutDescription]
+        if formValidation(textFields: textFieldsToValidate) {
+            _ = viewModel?.createWorkout(name: tfWorkoutName.text!, description: tfWorkoutDescription.text!, date: Date())
+            viewModel?.delegate?.dismissWorkoutForm()
+        } else {
+            textFieldsToValidate.forEach { $0.changeBorderColorIfEmpty() }
+        }
     }
 }
+
 
