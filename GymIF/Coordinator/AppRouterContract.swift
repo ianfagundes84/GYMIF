@@ -12,8 +12,12 @@ public enum AppAction {
     case openLogin
     case openHome
     case openWorkout
+    case presentWorkoutForm(delegate: WorkoutViewModelDelegate)
 }
 
 public protocol AppRouterContract: AnyObject {
     func send(action: AppAction)
+    func presentPopOver(delegate: WorkoutViewModelDelegate)
 }
+
+
