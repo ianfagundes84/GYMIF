@@ -94,14 +94,20 @@ extension HomeViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WorkOutTableViewCell.identifier, for: indexPath) as! WorkOutTableViewCell
-        if let workout = homeViewModel.workouts[indexPath.row] as? Workout {
-            cell.configure(workout: workout)
-        }
+        guard let workout = homeViewModel.workouts[indexPath.row] as? Workout else { return UITableViewCell() }
+        cell.configure(workout: workout)
         
+        cell.onLongPress = { [weak self, weak tableView] in
+            guard let self = self, let tableView = tableView else { return }
+            DispatchQueue.main.async {
+                if let index = self.homeViewModel.workouts.firstIndex(of: workout) {
+                    self.homeViewModel.workouts.remove(at: index)
+                    tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                }
+            }
+        }
         return cell
     }
-    
-    
 }
 
 extension HomeViewController: UITableViewDelegate {}

@@ -12,7 +12,7 @@ import TinyConstraints
 class WorkOutTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    
+    var onLongPress: (() -> Void)?
     static let identifier : String = "identifier"
     
     lazy var cardView: UIView = {
@@ -46,10 +46,10 @@ class WorkOutTableViewCell: UITableViewCell {
     // MARK: - Cell reuse
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         buildViewHierarchy()
         setupConstraints()
         configureViews()
+        setupLongPressGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -57,6 +57,17 @@ class WorkOutTableViewCell: UITableViewCell {
     }
     
     //MARK: - Functions
+    
+    private func setupLongPressGesture() {
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        self.addGestureRecognizer(longPressGesture)
+    }
+    
+    @objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            onLongPress?()
+        }
+    }
     
     func buildViewHierarchy() {
         contentView.addSubview(cardView)
