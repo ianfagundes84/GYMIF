@@ -16,8 +16,8 @@ public enum AppAction {
 }
 
 public protocol AppRouterContract: AnyObject {
-    func send(action: AppAction)
-    func presentPopOver(delegate: WorkoutViewModelDelegate)
+    func send(action: AppAction, obj: Workout?)
+    func presentPopOver(delegate: WorkoutViewModelDelegate, obj: Workout?)
 }
 
 

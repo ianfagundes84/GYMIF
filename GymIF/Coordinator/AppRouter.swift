@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-final class AppRouter: AppRouterContract {        
+final class AppRouter: AppRouterContract {
     private weak var navigationController: UINavigationController?
     
     init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
     }
     
-    func send(action: AppAction) {
+    func send(action: AppAction, obj: Workout? = nil) {
         switch action {
         case .openLogin:
             openLogin()
@@ -24,7 +24,7 @@ final class AppRouter: AppRouterContract {
         case .openWorkout:
             break
         case .presentWorkoutForm(let delegate):
-            presentPopOver(delegate: delegate)
+            presentPopOver(delegate: delegate, obj: obj)
         }
     }
     
@@ -38,8 +38,8 @@ final class AppRouter: AppRouterContract {
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    func presentPopOver(delegate: WorkoutViewModelDelegate) {
-        let controller = WorkoutFactory.make(appRouter: self, delegate: delegate)
+    func presentPopOver(delegate: WorkoutViewModelDelegate, obj: Workout?) {
+        let controller = WorkoutFactory.make(appRouter: self, delegate: delegate, workout: obj)
         controller.modalPresentationStyle = .popover
         navigationController?.present(controller, animated: true, completion: nil)
     }

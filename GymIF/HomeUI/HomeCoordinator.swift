@@ -14,7 +14,7 @@ public enum HomeAction {
 
 protocol HomeCoordinating: AnyObject {
     var viewController: UIViewController? { get set }
-    func perform(action: HomeAction)
+    func perform(action: HomeAction, workout: Workout?)
 }
 
 final class HomeCoordinator {
@@ -27,10 +27,10 @@ final class HomeCoordinator {
 }
 
 extension HomeCoordinator: HomeCoordinating {
-    func perform(action: HomeAction) {
+    func perform(action: HomeAction, workout: Workout?) {
         switch action {
         case .openExercises:
-            appRouter?.send(action: .openWorkout)
+            appRouter?.send(action: .openWorkout, obj: workout)
         }
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 protocol WorkoutCoordinating: AnyObject {
     var viewController: UIViewController? { get set }
+    func perform(action: HomeAction, workout: Workout)
 }
 
 class WorkoutCoordinator: WorkoutCoordinating {
@@ -19,6 +20,13 @@ class WorkoutCoordinator: WorkoutCoordinating {
 
     init(appRouter: AppRouterContract?) {
         self.appRouter = appRouter
+    }
+    
+    func perform(action: HomeAction, workout: Workout) {
+        switch action {
+        case .openExercises:
+            appRouter?.send(action: .openWorkout, obj: workout)
+        }
     }
 }
 

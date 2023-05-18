@@ -30,6 +30,7 @@ public class HomeViewController: UIViewController {
         return bt
     }()
     
+    private var workoutForm: WorkoutForm?
     private var homeViewModel: HomeViewModel
     private var workoutViewModel: WorkoutViewModel
     
@@ -46,7 +47,7 @@ public class HomeViewController: UIViewController {
     
     // MARK: - Functions
     func addWorkout() {
-        homeViewModel.appRouter?.send(action: .presentWorkoutForm(delegate: self))
+        homeViewModel.appRouter?.send(action: .presentWorkoutForm(delegate: self), obj: nil)
     }
     
     private func fetchWorkouts() {
@@ -108,9 +109,9 @@ extension HomeViewController: UITableViewDataSource {
                     tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .fade)
                 }
             }
-            cell.onEdit = { [weak self] in
-                self?.editWorkout(workout)
-            }
+        }
+        cell.onEdit = { [weak self] in
+            self?.editWorkout(workout)
         }
         return cell
     }
@@ -129,6 +130,6 @@ extension HomeViewController: WorkoutViewModelDelegate {
     }
     
     public func editWorkout(_ workout: Workout) {
-                
+        homeViewModel.appRouter?.send(action: .presentWorkoutForm(delegate: self), obj: workout)
     }
 }

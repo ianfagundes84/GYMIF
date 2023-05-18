@@ -12,6 +12,12 @@ public class WorkoutForm: UIView {
     
     private var viewModel: WorkoutViewModel?
     
+    public var workout: Workout? {
+        didSet {
+            fillFormWithWorkoutDetails()
+        }
+    }
+    
     private lazy var cardView: UIView = {
         let uv = UIView()
         uv.layer.cornerRadius = 16
@@ -98,6 +104,13 @@ public class WorkoutForm: UIView {
         view.viewModel = viewModel
         return view
     }
+    
+    private func fillFormWithWorkoutDetails() {
+        if let workout = workout {
+            tfWorkoutName.text = workout.workoutName
+            tfWorkoutDescription.text = workout.workoutDescription
+        }
+    }
 }
 
 extension WorkoutForm: UITextFieldDelegate {
@@ -113,12 +126,17 @@ extension WorkoutForm: UITextFieldDelegate {
     func formValidation(textFields: [UITextField]) -> Bool {
         return textFields.allSatisfy { $0.isValid }
     }
-
+    
     func workoutCreationTapped() {
         let textFieldsToValidate = [tfWorkoutName, tfWorkoutDescription]
         if formValidation(textFields: textFieldsToValidate) {
-            _ = viewModel?.createWorkout(name: tfWorkoutName.text!, description: tfWorkoutDescription.text!, date: Date())
-            viewModel?.delegate?.dismissWorkoutForm()
+            if let workout = workout {
+                viewModel?.updateWorkout(workout: workout, name: tfWorkoutName.text!, description: tfWorkoutDescription.text!, date: Date())
+                viewModel?.delegate?.dismissWorkoutForm()
+            } else {
+                _ = viewModel?.createWorkout(name: tfWorkoutName.text!, description: tfWorkoutDescription.text!, date: Date())
+                viewModel?.delegate?.dismissWorkoutForm()
+            }
         } else {
             textFieldsToValidate.forEach { $0.changeBorderColorIfEmpty() }
         }

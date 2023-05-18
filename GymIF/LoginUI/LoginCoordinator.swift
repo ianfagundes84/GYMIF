@@ -28,7 +28,7 @@ extension LoginCoordinator: LoginCoordinating {
     func perform(action: LoginAction) {
         switch action {
         case .openHome:
-            appRouter?.send(action: .openHome)
+            appRouter?.send(action: .openHome, obj: nil)
         }
     }
 }
